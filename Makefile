@@ -26,15 +26,16 @@ uninstall:
 # build a new .vimrc config from the sources
 # order matters in some cases because of things like `nocompatible`
 # language-specific stuff (or anything in an augroup) shouldn't matter much.
-.vimrc: $(shell find vim -name '*.vim')
-	cat vim/defaults.vim > $@
-	cat vim/colors.vim > $@
-	cat vim/behavior.vim > $@
-	cat vim/mappings.vim > $@
-	cat vim/git.vim > $@
-	cat vim/go.vim > $@
-	cat vim/make.vim > $@
-	cat vim/markdown.vim > $@
-	cat vim/php.vim > $@
-	cat vim/vim.vim > $@
-	cat vim/yaml.vim > $@
+.vimrc: $(shell find ./vim -name '*.vim')
+	echo > $@
+	cat vim/defaults.vim >> $@
+	cat vim/colors.vim >> $@
+	cat vim/behavior.vim >> $@
+	cat vim/mappings.vim >> $@
+	cat vim/git.vim >> $@
+	cat vim/go.vim >> $@
+	cat vim/make.vim >> $@
+	cat vim/markdown.vim >> $@
+	cat vim/php.vim >> $@
+	cat vim/vim.vim >> $@
+	cat vim/yaml.vim >> $@
