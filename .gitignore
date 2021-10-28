@@ -1,1 +1,3 @@
 .vimrc
+.terraform*
+terraform.tfstate*
