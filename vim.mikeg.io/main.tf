@@ -9,7 +9,7 @@ terraform {
 
 provider "cloudflare" {
   account_id = var.account_id
-  # api_token via environment
+  # api_token via environment $CLOUDFLARE_API_TOKEN
 }
 
 variable "account_id" {
@@ -34,21 +34,21 @@ resource "cloudflare_workers_kv_namespace" "vim" {
 
 resource "cloudflare_workers_kv" "vimrc" {
   namespace_id = cloudflare_workers_kv_namespace.vim.id
-  key = ".vimrc"
-  value = file("../.vimrc")
+  key          = ".vimrc"
+  value        = file("../.vimrc")
 }
 
 resource "cloudflare_worker_script" "vimrc" {
-  name = "vimrc"
+  name    = "vimrc"
   content = file("index.js")
   kv_namespace_binding {
-    name = "VIM"
+    name         = "VIM"
     namespace_id = cloudflare_workers_kv_namespace.vim.id
   }
 }
 
 resource "cloudflare_worker_route" "vim" {
-  zone_id = var.zone_id
-  pattern = "vim.mikeg.io/*"
+  zone_id     = var.zone_id
+  pattern     = "vim.mikeg.io/*"
   script_name = cloudflare_worker_script.vimrc.name
 }

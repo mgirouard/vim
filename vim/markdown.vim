@@ -1,7 +1,7 @@
 " markdown
 augroup markdown
   autocmd!
-  autocmd BufNew,BufEnter *.md set filetype=markdown
-  autocmd FileType markdown set nocindent
-  autocmd FileType markdown set spell
+  autocmd BufNew,BufEnter *.md setlocal filetype=markdown
+  autocmd FileType markdown setlocal nocindent
+  autocmd FileType markdown setlocal spell
 augroup END
